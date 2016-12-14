@@ -19,7 +19,7 @@
     if (_stack.count == 0) {
         return nil;
     }
-    //[0,1,[3,4],[5,[6,7]],8]chuns
+    //[0,1,[3,4],[5,[6,7]],8]
     id item = cursor->_array[cursor->_index];
     while ([item isKindOfClass:[NSArray class]]) {
         cursor->_index++;
