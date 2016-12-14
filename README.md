@@ -1,6 +1,4 @@
-# 迭代器
-
-# 自己实现一个迭代器类可实现遍历`nextObject`和`allObjects`
+# Objective-C迭代器
 
 # 思路
 * 需要一个IteratorCursor类记录每一次数组遍历的位置`index` 和每次数组`array`。
