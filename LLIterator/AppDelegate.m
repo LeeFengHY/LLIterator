@@ -18,7 +18,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    NSArrayIterator *iterator = [[NSArrayIterator alloc] initWithArray:@[@1,@2,@[@3,@4],@[@5,@[@6,@7]],@8]];
+    NSArrayIterator *iterator = [[NSArrayIterator alloc] initWithArray:@[@1,@2,@[@3,@4],@[@5,@[@6,@7]],@8,@[@[]]]];
     NSArray *allObjects = [iterator allObjects];
     NSLog(@"allObjects:%@",allObjects);
     id object;

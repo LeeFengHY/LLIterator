@@ -43,20 +43,20 @@
     if (self) {
         _originArray = originArray;
         _stack = [NSMutableArray array];
-        [self setupStack];
+        [self setupStackWithArray:originArray];
     }
     return self;
 }
 
-- (void)setupStack
+- (void)setupStackWithArray:(NSArray *)array
 {
-    NSArrayIteratorCursor *cursor = [[NSArrayIteratorCursor alloc] initWithArray:self->_originArray];
+    NSArrayIteratorCursor *cursor = [[NSArrayIteratorCursor alloc] initWithArray:array];
     [_stack addObject:cursor];
 }
 
 - (id)nextObject
 {
-    if (self->_originArray.count == 0) {
+    if (self->_stack.count == 0) {
         return nil;
     }
     NSArrayIteratorCursor *cursor = [self->_stack lastObject];
@@ -72,10 +72,18 @@
     id item = cursor->_array[cursor->_index];
     while ([item isKindOfClass:[NSArray class]]) {
         cursor->_index++;
+#if 0
         NSArrayIteratorCursor *c = [[NSArrayIteratorCursor alloc] initWithArray:item];
         [_stack addObject:c];
         cursor = c;
+        if (cursor->_array.count == 0) {
+            item = nil;
+            break;
+        }
         item = cursor->_array[cursor->_index];
+#endif
+        [self setupStackWithArray:item];
+        return [self nextObject];
     }
     cursor->_index++;
     return item;
